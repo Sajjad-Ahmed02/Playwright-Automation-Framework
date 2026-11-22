@@ -8,9 +8,10 @@ class LoginPage {
         this.usernameInput = page.locator('#username');
         this.passwordInput = page.locator('#password');
         this.loginButton = page.locator('#login');
+        this.loginError = page.getByText(/invalid login details/i);
     }
 
-    // Actions
+    
     async navigate() {
         await this.page.goto('/');
     }

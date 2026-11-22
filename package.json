@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npx playwright test",
     "test:ui": "npx playwright test --ui",
+    "test:ui-chromium": "npx playwright test --ui --project=chromium",
     "test:headed": "npx playwright test --headed",
     "test:chromium": "npx playwright test --project=chromium",
     "test:firefox": "npx playwright test --project=firefox",
@@ -16,5 +17,8 @@
   "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.65.1"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10"
   }
 }
