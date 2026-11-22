@@ -24,7 +24,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://adactinhotelapp.com',
 
-    headless: true,
+    headless: false,
 
     screenshot: 'only-on-failure',
 
