@@ -13,7 +13,7 @@ class LoginPage {
 
     
     async navigate() {
-        await this.page.goto('/');
+        await this.page.goto('./');
     }
 
     async login(username, password) {

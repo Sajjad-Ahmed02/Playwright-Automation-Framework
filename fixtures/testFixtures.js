@@ -2,6 +2,7 @@
 import { test as base, expect } from '@playwright/test';
 
 import LoginPage from '../pages/LoginPage.js';
+import SearchPage from '../pages/SearchPage.js';
 import NavigationBar from '../pages/NavigationBar.js';
 
 const test = base.extend({
@@ -20,6 +21,10 @@ const test = base.extend({
 
         await use(navigationBar);
 
+    },
+    searchPage: async ({ page }, use) => {
+        const searchPage = new SearchPage(page);
+        await use(searchPage);
     }
 
 });
