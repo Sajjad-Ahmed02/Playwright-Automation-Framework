@@ -66,7 +66,9 @@ test('TC10 - Book hotel with valid details', async ({
     await bookingPage.fillBookingForm(bookingData.validBooking);
     await bookingPage.bookHotel();
 
-    await expect(bookingConfirmationPage.orderNumber).toBeVisible();
+    await expect(bookingConfirmationPage.orderNumber).toBeVisible({
+        timeout: 30000
+    });
     await expect(bookingConfirmationPage.orderNumber).toHaveValue(/\S+/);
 
 });

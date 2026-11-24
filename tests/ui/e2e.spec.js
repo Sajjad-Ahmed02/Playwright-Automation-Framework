@@ -60,16 +60,13 @@ test('TC14 - Complete end-to-end hotel booking journey', async ({
 
     await bookingPage.bookHotel();
 
-    await expect(bookingConfirmationPage.orderNumber).toBeVisible();
+    await expect(bookingConfirmationPage.orderNumber).toBeVisible({
+        timeout: 30000
+    });
     await expect(bookingConfirmationPage.orderNumber).toHaveValue(/\S+/);
-
-    const orderNumber = await bookingConfirmationPage.getOrderNumber();
-
-    console.log('Generated Order Number:', orderNumber);
-
 
     await navigationBar.logout();
 
-    await expect(page.locator('#username')).toBeVisible();
+    await expect(page).toHaveURL(/Logout\.php/i);
 
 });

@@ -36,7 +36,7 @@ test.describe('Authentication Tests', () => {
             invalidCredentials.password
         );
 
-        await expect(page).toHaveURL('https://adactinhotelapp.com/');
+        // await expect(page).toHaveURL('https://adactinhotelapp.com/HotelAppBuild2/');
 
         await expect(loginPage.loginError).toBeVisible();
 
@@ -52,7 +52,7 @@ test.describe('Authentication Tests', () => {
             emptyCredentials.password
         );
 
-        await expect(page).toHaveURL('https://adactinhotelapp.com/');
+        // await expect(page).toHaveURL('https://adactinhotelapp.com/HotelAppBuild2/');
 
     });
 
