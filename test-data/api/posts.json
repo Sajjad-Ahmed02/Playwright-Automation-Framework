@@ -1,0 +1,17 @@
+{
+  "validPostId": 1,
+  "newPost": {
+    "title": "Playwright API Testing",
+    "body": "Learning API automation using Playwright.",
+    "userId": 1
+  },
+  "updatedPost": {
+    "id": 1,
+    "title": "Updated Playwright API Testing",
+    "body": "Testing PUT requests with Playwright.",
+    "userId": 1
+  },
+  "partialUpdate": {
+    "title": "Partially Updated Post"
+  }
+}

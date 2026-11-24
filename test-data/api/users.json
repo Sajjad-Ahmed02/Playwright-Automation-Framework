@@ -1,0 +1,24 @@
+{
+  "validUserId": 1,
+  "invalidUserId": 9999,
+  "expectedFirstUser": {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz"
+  },
+  "newUser": {
+    "name": "Sajjad Ahmed",
+    "username": "sajjad",
+    "email": "sajjad@example.com"
+  },
+  "updatedUser": {
+    "id": 1,
+    "name": "Sajjad Ahmed Updated",
+    "username": "sajjad_updated",
+    "email": "sajjad.updated@example.com"
+  },
+  "partialUpdate": {
+    "email": "newemail@example.com"
+  }
+}

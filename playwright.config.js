@@ -1,55 +1,87 @@
 
 import { defineConfig, devices } from '@playwright/test';
 
+import { API_BASE_URL } from './config/environment.js';
+
 export default defineConfig({
 
-  testDir: './tests',
+    testDir: './tests',
 
-  fullyParallel: true,
+    fullyParallel: true,
 
-  forbidOnly: !!process.env.CI,
+    forbidOnly: !!process.env.CI,
 
-  retries: process.env.CI ? 2 : 0,
+    retries: process.env.CI ? 2 : 0,
 
-  workers: process.env.CI ? 1 : 3,
+    workers: process.env.CI ? 1 : 3,
 
-  reporter: [
-    ['list'],
-    ['html', {
-      outputFolder: 'reports/html',
-      open: 'never'
-    }]
-  ],
+    reporter: [
+        ['list'],
+        ['html', {
+            outputFolder: 'reports/html',
+            open: 'never'
+        }]
+    ],
 
-  use: {
-    baseURL: 'https://adactinhotelapp.com/HotelAppBuild2/',
+    use: {
+        baseURL: 'https://adactinhotelapp.com/HotelAppBuild2/',
 
-    headless: false,
+        headless: false,
 
-    screenshot: 'only-on-failure',
+        screenshot: 'only-on-failure',
 
-    trace: 'retain-on-failure',
+        trace: 'retain-on-failure',
 
-    video: 'retain-on-failure',
+        video: 'retain-on-failure',
 
-    actionTimeout: 10000,
+        actionTimeout: 10000,
 
-    navigationTimeout: 30000
-  },
-
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+        navigationTimeout: 30000
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] }
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] }
-    }
-  ]
+
+    projects: [
+
+        // UI Testing - Chromium
+        {
+            name: 'chromium',
+            use: {
+                ...devices['Desktop Chrome']
+            }
+        },
+
+        // UI Testing - Firefox
+        {
+            name: 'firefox',
+            use: {
+                ...devices['Desktop Firefox']
+            }
+        },
+
+        // UI Testing - WebKit
+        {
+            name: 'webkit',
+            use: {
+                ...devices['Desktop Safari']
+            }
+        },
+
+        // API Testing - JSONPlaceholder
+        {
+            name: 'api',
+
+            testMatch: '**/api/**/*.spec.js',
+
+            use: {
+                baseURL: API_BASE_URL,
+
+                screenshot: 'off',
+
+                trace: 'off',
+
+                video: 'off'
+            }
+        }
+
+    ]
 
 });
