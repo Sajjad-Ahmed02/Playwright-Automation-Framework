@@ -4,7 +4,9 @@ import { test as base, expect } from '@playwright/test';
 import LoginPage from '../pages/LoginPage.js';
 import SearchPage from '../pages/SearchPage.js';
 import NavigationBar from '../pages/NavigationBar.js';
-
+import SelectHotelPage from '../pages/SelectHotelPage.js';
+import BookingPage from '../pages/BookingPage.js';
+import BookingConfirmationPage from '../pages/BookingConfirmationPage.js';
 const test = base.extend({
 
     loginPage: async ({ page }, use) => {
@@ -25,6 +27,21 @@ const test = base.extend({
     searchPage: async ({ page }, use) => {
         const searchPage = new SearchPage(page);
         await use(searchPage);
+    }
+    ,
+    selectHotelPage: async ({ page }, use) => {
+        const selectHotelPage = new SelectHotelPage(page);
+        await use(selectHotelPage);
+    },
+
+    bookingPage: async ({ page }, use) => {
+        const bookingPage = new BookingPage(page);
+        await use(bookingPage);
+    },
+
+    bookingConfirmationPage: async ({ page }, use) => {
+        const bookingConfirmationPage = new BookingConfirmationPage(page);
+        await use(bookingConfirmationPage);
     }
 
 });

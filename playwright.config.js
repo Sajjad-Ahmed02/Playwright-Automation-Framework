@@ -22,7 +22,7 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: 'https://adactinhotelapp.com/HotelAppBuild2/',
+    baseURL: 'https://adactinhotelapp.com/',
 
     headless: false,
 

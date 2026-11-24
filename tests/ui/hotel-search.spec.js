@@ -1,11 +1,9 @@
-
 import 'dotenv/config';
 
 import { readFileSync } from 'node:fs';
 
 import { test, expect } from '../../fixtures/testFixtures.js';
 
-// Load test data
 const searchData = JSON.parse(
     readFileSync(
         new URL('../../test-data/ui/hotel-search.json', import.meta.url),
@@ -52,13 +50,6 @@ test('TC07 - Search hotel with invalid dates', async ({ page, searchPage }) => {
     await searchPage.fillSearchForm(searchData.invalidDates);
 
     await searchPage.searchHotels();
-
-    console.log('Current URL:', page.url());
-
-    console.log(
-        'Page content:',
-        await page.locator('body').innerText()
-    );
 
     await page.screenshot({
         path: 'screenshots/TC07-invalid-dates.png',

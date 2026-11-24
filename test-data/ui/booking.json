@@ -1,0 +1,43 @@
+
+{
+  "validBooking": {
+    "firstName": "Sajjad",
+    "lastName": "Ahmed",
+    "address": "Karachi, Pakistan",
+    "creditCardNumber": "1234567890123456",
+    "creditCardType": "VISA",
+    "expiryMonth": "12",
+    "expiryYear": "2028",
+    "cvv": "123"
+  },
+  "missingFirstName": {
+    "firstName": "",
+    "lastName": "Ahmed",
+    "address": "Karachi, Pakistan",
+    "creditCardNumber": "1234567890123456",
+    "creditCardType": "VISA",
+    "expiryMonth": "12",
+    "expiryYear": "2028",
+    "cvv": "123"
+  },
+  "missingLastName": {
+    "firstName": "Sajjad",
+    "lastName": "",
+    "address": "Karachi, Pakistan",
+    "creditCardNumber": "1234567890123456",
+    "creditCardType": "VISA",
+    "expiryMonth": "12",
+    "expiryYear": "2028",
+    "cvv": "123"
+  },
+  "invalidCardNumber": {
+    "firstName": "Sajjad",
+    "lastName": "Ahmed",
+    "address": "Karachi, Pakistan",
+    "creditCardNumber": "123",
+    "creditCardType": "VISA",
+    "expiryMonth": "12",
+    "expiryYear": "2028",
+    "cvv": "123"
+  }
+}
