@@ -20,6 +20,9 @@ export default defineConfig({
         ['html', {
             outputFolder: 'reports/html',
             open: 'never'
+        }],
+        ['allure-playwright', {
+            resultsDir: 'reports/allure-results'
         }]
     ],
 

@@ -13,12 +13,19 @@
     "test:webkit": "npx playwright test --project=webkit",
     "test:api": "npx playwright test --project=api",
     "test:api:headed": "npx playwright test --project=api --headed",
-    "report": "npx playwright show-report reports/html"
+    "report": "npx playwright show-report reports/html",
+    "test:allure": "rimraf reports/allure-results && npx playwright test",
+    "allure:generate": "allure generate reports/allure-results --clean --output reports/allure-report",
+    "allure:open": "allure open reports/allure-report",
+    "allure:serve": "allure serve reports/allure-results"
   },
   "keywords": [],
   "type": "module",
   "devDependencies": {
-    "@playwright/test": "^1.65.1"
+    "@playwright/test": "^1.65.1",
+    "allure-commandline": "^2.46.2",
+    "allure-playwright": "^3.15.0",
+    "rimraf": "^6.1.4"
   },
   "dependencies": {
     "dotenv": "^18.0.10"
