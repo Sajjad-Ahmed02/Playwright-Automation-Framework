@@ -1,5 +1,6 @@
 
 import { test as base, expect } from '@playwright/test';
+import { credentials } from '../config/environment.js';
 
 import LoginPage from '../pages/LoginPage.js';
 import SearchPage from '../pages/SearchPage.js';
@@ -47,6 +48,12 @@ const test = base.extend({
 });
 
 test.beforeEach(async ({ page }, testInfo) => {
+
+    if (!credentials.username || !credentials.password) {
+        throw new Error(
+            'Adactin credentials are missing. Set ADACTIN_USERNAME and ADACTIN_PASSWORD at runtime.'
+        );
+    }
 
     console.log(`Starting test: ${testInfo.title}`);
 

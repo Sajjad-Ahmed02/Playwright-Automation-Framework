@@ -11,9 +11,17 @@ export default defineConfig({
 
     forbidOnly: !!process.env.CI,
 
-    retries: process.env.CI ? 2 : 0,
+    retries: process.env.CI ? 1 : 0,
 
     workers: process.env.CI ? 1 : 3,
+
+    timeout: 45000,
+
+    globalTimeout: 30 * 60 * 1000,
+
+    expect: {
+        timeout: 10000
+    },
 
     reporter: [
         ['list'],
@@ -29,7 +37,7 @@ export default defineConfig({
     use: {
         baseURL: 'https://adactinhotelapp.com/HotelAppBuild2/',
 
-        headless: false,
+        headless: true,
 
         screenshot: 'only-on-failure',
 
@@ -47,6 +55,7 @@ export default defineConfig({
         // UI Testing - Chromium
         {
             name: 'chromium',
+            testMatch: '**/ui/**/*.spec.js',
             use: {
                 ...devices['Desktop Chrome']
             }
@@ -55,6 +64,7 @@ export default defineConfig({
         // UI Testing - Firefox
         {
             name: 'firefox',
+            testMatch: '**/ui/**/*.spec.js',
             use: {
                 ...devices['Desktop Firefox']
             }
@@ -63,6 +73,7 @@ export default defineConfig({
         // UI Testing - WebKit
         {
             name: 'webkit',
+            testMatch: '**/ui/**/*.spec.js',
             use: {
                 ...devices['Desktop Safari']
             }

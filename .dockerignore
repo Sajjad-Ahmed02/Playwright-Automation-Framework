@@ -1,0 +1,11 @@
+.git
+.env.*
+.env
+node_modules
+test-results
+playwright-report
+reports
+screenshots
+logs
+*.log
+.DS_Store

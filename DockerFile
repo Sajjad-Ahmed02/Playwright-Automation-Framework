@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/playwright:v1.65.1-noble
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY config/ ./config/
+COPY fixtures/ ./fixtures/
+COPY pages/ ./pages/
+COPY tests/ ./tests/
+COPY test-data/ ./test-data/
+COPY utils/ ./utils/
+COPY playwright.config.js ./
+
+RUN mkdir -p reports/html reports/allure-results screenshots
+
+ENV CI=1
+
+ENTRYPOINT ["./node_modules/.bin/playwright", "test"]
