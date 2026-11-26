@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    triggers { githubPush() }
+
+    environment {
+        IMAGE_NAME     = 'playwright-tests:jenkins-test'
+        CONTAINER_NAME = "playwright-tests-jenkins-${env.BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Build image') {
+            steps { bat 'docker build -t %IMAGE_NAME% .' }
+        }
+
+        stage('Run tests') {
+            steps {
+                withCredentials([file(credentialsId: 'playwright-env', variable: 'ENV_FILE')]) {
+                    bat 'docker run --env-file "%ENV_FILE%" --name %CONTAINER_NAME% %IMAGE_NAME%'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            bat 'if exist playwright-report rmdir /s /q playwright-report'
+            bat 'docker cp %CONTAINER_NAME%:/app/reports/html ./playwright-report'
+            bat 'docker rm %CONTAINER_NAME% >nul 2>&1'
+            publishHTML(target: [reportDir: 'playwright-report', reportFiles: 'index.html',
+                                 reportName: 'Playwright HTML Report',
+                                 keepAll: true, alwaysLinkToLastBuild: true, allowMissing: true])
+        }
+    }
+}
