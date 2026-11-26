@@ -1,12 +1,11 @@
-
 {
   "validSearch": {
     "location": "Sydney",
     "hotel": "Hotel Creek",
     "roomType": "Standard",
     "numberOfRooms": "1",
-    "checkIn": "25/11/2026",
-    "checkOut": "26/11/2026",
+    "checkIn": "14/12/2026",
+    "checkOut": "29/12/2026",
     "adults": "2",
     "children": "0"
   },
@@ -15,8 +14,8 @@
     "hotel": "Hotel Creek",
     "roomType": "Standard",
     "numberOfRooms": "1",
-    "checkIn": "25/11/2026",
-    "checkOut": "26/11/2026",
+    "checkIn": "14/12/2026",
+    "checkOut": "29/12/2026",
     "adults": "2",
     "children": "0"
   },
@@ -25,8 +24,8 @@
     "hotel": "Hotel Creek",
     "roomType": "Standard",
     "numberOfRooms": "1",
-    "checkIn": "26/11/2026",
-    "checkOut": "25/11/2026",
+    "checkIn": "29/11/2026",
+    "checkOut": "27/11/2026",
     "adults": "2",
     "children": "0"
   },
@@ -36,7 +35,7 @@
     "roomType": "Standard",
     "numberOfRooms": "1",
     "checkIn": "",
-    "checkOut": "26/11/2026",
+    "checkOut": "29/11/2026",
     "adults": "2",
     "children": "0"
   }
