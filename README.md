@@ -1,6 +1,6 @@
 # Playwright Automation Framework
 
-This repository provides a modular test automation framework for UI and API testing. It uses Playwright Test, JavaScript, the Page Object Model, reusable utilities, JSON test data, Playwright HTML reports, Allure reports, Docker, and Jenkins integration points.
+This repository provides a modular test automation framework for UI and API testing. It uses Playwright Test, JavaScript, the Page Object Model, reusable utilities, JSON test data, Playwright HTML reports, Allure reports, Docker, and Jenkins CI/CD.
 
 The UI suite validates workflows in the Adactin Hotel Booking application. The API suite validates users and posts against JSONPlaceholder or a configurable API endpoint.
 
@@ -229,6 +229,61 @@ docker run --rm --env-file .env `
 ```
 
 The Docker image includes Playwright and its browsers. API tests default to JSONPlaceholder unless `API_BASE_URL` is provided.
+
+## Jenkins CI/CD
+
+The `JenkinsFile` defines a Windows-compatible declarative pipeline that builds the Docker image and runs the complete Playwright suite.
+
+The pipeline provides:
+
+- GitHub push triggers through `githubPush()`
+- Docker image builds
+- Secret environment-file injection
+- Container-based test execution
+- Playwright HTML report publication
+- Container cleanup after each build
+
+### Jenkins Requirements
+
+Configure the Jenkins node with:
+
+- Git
+- Docker Desktop or Docker Engine accessible from the Jenkins agent
+- Windows batch command support
+- The HTML Publisher plugin
+- A Jenkins secret file credential containing `.env`
+
+Create the credential as a secret file and assign it the credential ID `playwright-env`. The file must contain the required environment variables:
+
+```dotenv
+ADACTIN_USERNAME=your_username
+ADACTIN_PASSWORD=your_password
+API_BASE_URL=https://jsonplaceholder.typicode.com
+```
+
+The Jenkins pipeline uses the following Docker names:
+
+```text
+Image:      playwright-tests:jenkins-test
+Container:  playwright-tests-jenkins-<BUILD_NUMBER>
+```
+
+### Pipeline Execution
+
+Create a Jenkins Pipeline job and select `JenkinsFile` as the Jenkinsfile. Trigger a build through GitHub push or start it manually.
+
+The pipeline executes these stages:
+
+1. Builds the Docker image from the repository root.
+2. Mounts the `playwright-env` secret file into the test container with `--env-file`.
+3. Runs the Playwright entrypoint from the Docker image.
+4. Copies `/app/reports/html` from the container to `playwright-report` on the Jenkins workspace.
+5. Removes the test container.
+6. Publishes `playwright-report/index.html` as the `Playwright HTML Report`.
+
+The report remains available from the Jenkins build page. It is also configured to remain available for earlier builds through the HTML Publisher settings.
+
+For a Jenkins host that does not run Windows batch commands, the pipeline must be adapted to use a Linux agent and Unix shell commands.
 
 ## Configuration
 
